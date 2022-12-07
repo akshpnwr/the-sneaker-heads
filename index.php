@@ -70,59 +70,42 @@
 
       <div class="products-container">
         <h3>Our products</h3>
-        <div class="items"></div>
+        <!-- <div class="items"></div> -->
         <div class="products">
-          <div class="product" data-id="1">
-            <img src="./images/sneaker1.webp" alt="" />
-            <p class="product-name">Air Jordan</p>
-            <p class="product-price">$299</p>
-            <button class="buy-btn">Buy</button>
-          </div>
-          <div class="product" data-id="2"> 
-            <img src="./images/sneaker2.webp" alt="" />
-            <p class="product-name">Air Force</p>
-            <p class="product-price">$299</p>
-            <button class="buy-btn">Buy</button>
-          </div>
-          <div class="product" data-id="3">
-            <img src="./images/sneaker3.webp" alt="" />
-            <p class="product-name">Air Max V</p>
-            <p class="product-price">$299</p>
-            <button class="buy-btn">Buy</button>
-          </div>
-          <div class="product" data-id="4">
-            <img src="./images/sneaker4.webp" alt="" />
-            <p class="product-name">Air Jordan XI</p>
-            <p class="product-price">$299</p>
-            <button class="buy-btn">Buy</button>
-          </div>
-          <div class="product" data-id="5">
-            <img src="./images/sneaker5.webp" alt="" />
-            <p class="product-name">Air Force II</p>
-            <p class="product-price">$299</p>
-            <button class="buy-btn">Buy</button>
-          </div>
-          <div class="product" data-id="6">
-            <img src="./images/sneaker6.webp" alt="" />
-            <p class="product-name">Air Jordan XM</p>
-            <p class="product-price">$299</p>
+        <?php 
 
-            <button class="buy-btn">Buy</button>
-          </div>
-          <div class="product" data-id="7">
-            <img src="./images/sneaker7.webp" alt="" />
-            <p class="product-name">Air V Jordan</p>
-            <p class="product-price">$299</p>
+          $servername="localhost";
+          $username="root";
+          $password="";
+          $database_name = "mydb";
 
-            <button class="buy-btn">Buy</button>
-          </div>
-          <div class="product" data-id="8">
-            <img src="./images/sneaker8.webp" alt="" />
-            <p class="product-name">Air Max SX</p>
-            <p class="product-price">$299</p>
+          $conn = new mysqli($servername, $username, $password, $database_name);
+          // Check connection
+          if ($conn->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
+          }
 
-            <button class="buy-btn">Buy</button>
-          </div>
+          $sql = "SELECT * FROM products";
+
+          $result = $conn->query($sql);
+
+          if ($result->num_rows > 0) {
+            // output data of each row
+            while($row = $result->fetch_assoc()) {
+              echo '<div class="product" data-id='.$row['p_id'].'>';
+              echo '<img src="./images/sneaker'.$row['p_id'].'.webp" alt="" />';
+              echo '<p class="product-name">'.$row["name"].'</p>';
+              echo '<p class="product-price">$'.$row['price'].'</p>';
+              echo '<button class="buy-btn">Buy</button>';
+              echo '</div>';
+            }
+          } else {
+            echo "0 results";
+          }
+          $conn->close();
+
+        ?>
+       
         </div>
       </div>
 
