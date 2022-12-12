@@ -64,64 +64,69 @@
 
       <div class="cart-details">
         <h1>PRODUCTS</h1>
-        <div class="cart-items">
-        <?php 
+        <div class="billing-details">
+          <div class="cart-items">
+            <?php 
 
-          $servername="localhost";
-          $username="root";
-          $password="";
-          $database_name = "mydb";
+              $servername="localhost";
+              $username="root";
+              $password="";
+              $database_name = "mydb";
 
-          $conn = new mysqli($servername, $username, $password, $database_name);
-          // Check connection
-          if ($conn->connect_error) {
-            die("Connection failed: " . $conn->connect_error);
-          }
+              $conn = new mysqli($servername, $username, $password, $database_name);
+              // Check connection
+              if ($conn->connect_error) {
+                die("Connection failed: " . $conn->connect_error);
+              }
+              
+              $sql = "SELECT * FROM orders";
+              
+              $result = $conn->query($sql);
+              $totalPrice = 0;
+              
+              if ($result->num_rows > 0) {
+                // output data of each row
+                while($row = $result->fetch_assoc()) {
 
-          $sql = "SELECT * FROM orders";
+                  $totalPrice += $row['price'];
 
-          $result = $conn->query($sql);
-
-          if ($result->num_rows > 0) {
-            // output data of each row
-            while($row = $result->fetch_assoc()) {
-              echo '<div class="cart-item" data-id='.$row['o_id'].'>
-                      <i class="fa-regular fa-circle-xmark"></i>
-                      <img class="cart-item-image" src="./images/sneaker'.$row['p_id'].'.webp" alt="">
-                      <p class="cart-item-name">'.$row['item'].'</p>
-                      <p class="cart-item-price">$'.$row['price'].'</p>
-                    </div>';
-            }
-          } else {
-            echo "0 results";
-          }
-          $conn->close();
-
-        ?>
-          <!-- <div class="cart-item">
-            <i class="fa-regular fa-circle-xmark"></i>
-            <img class="cart-item-image" src="./images/sneaker1.webp" alt="">
-            <p class="cart-item-name">Air Max VI</p>
-            <p class="cart-item-price">$220</p>
-          </div>
-          <div class="cart-item">
-            <i class="fa-regular fa-circle-xmark"></i>
-            <img class="cart-item-image" src="./images/sneaker1.webp" alt="">
-            <p class="cart-item-name">Air Max VI</p>
-            <p class="cart-item-price">$220</p>
-          </div>        <div class="cart-item">
-            <i class="fa-regular fa-circle-xmark"></i>
-            <img class="cart-item-image" src="./images/sneaker1.webp" alt="">
-            <p class="cart-item-name">Air Max VI</p>
-            <p class="cart-item-price">$220</p>
-          </div>        <div class="cart-item">
-            <i class="fa-regular fa-circle-xmark"></i>
-            <img class="cart-item-image" src="./images/sneaker1.webp" alt="">
-            <p class="cart-item-name">Air Max VI</p>
-            <p class="cart-item-price">$220</p>
-          </div> -->
+                  echo '<div class="cart-item" data-id='.$row['o_id'].'>
+                  <i class="fa-regular fa-circle-xmark"></i>
+                  <img class="cart-item-image" src="./images/sneaker'.$row['p_id'].'.webp" alt="">
+                  <p class="cart-item-name">'.$row['item'].'</p>
+                  <p class="cart-item-price">$'.$row['price'].'</p>
+                  </div>';
+                }
+              } else {
+                echo "0 results";
+              }
+              $conn->close();
+            
+            ?>
         </div>
-      
+
+        <div class="cart-billing">
+
+          <?php 
+          // echo '<h1>'.$totalPrice.'</h1>';
+            $priceWithShipping = $totalPrice + 10;
+            echo '
+            <h2>CART TOTALS</h2>
+            <div>
+              <p>Sub totals:</p>
+              <p>$'.$totalPrice.'</p>
+            </div>
+            <h2>SHIPPING</h2>
+            <p class="flat-rate">Flat rate: $10</p>
+            <div>
+                <h2>TOTAL:</h2>
+                <h2>$'.$priceWithShipping.'</h2>
+              </div>
+              ';
+            ?>
+        </div>
+        
+      </div>
       </div>
 
       <footer>

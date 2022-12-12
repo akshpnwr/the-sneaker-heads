@@ -12,6 +12,7 @@
   width: 60%;
   margin: 0 auto;
 }
+
 .cart-details > h1 {
   margin: 2rem 0;
 }
@@ -20,14 +21,17 @@
 .far {
   font-size: 1.75rem;
 }
+.cart-items {
+  width: 60%;
+}
 
 .cart-item {
   display: flex;
   align-items: center;
-  border: 1px solid red;
   gap: 3rem;
   font-size: 1.5rem;
-  margin-bottom: 1.5rem;
+  margin-bottom: 2rem;
+  position: relative;
 }
 
 .cart-item-image {
@@ -42,4 +46,38 @@
 .cart-item-price {
   color: gray;
   font-weight: 800;
+  position: absolute;
+  right: 0;
+}
+
+.cart-billing {
+  background: #000;
+  color: #fff;
+  padding: 1rem;
+  margin-bottom: 2rem;
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.cart-billing p {
+  padding: 0.5rem 0;
+}
+
+.cart-billing .flat-rate {
+  border-top: 1px solid gray;
+  border-bottom: 1px solid gray;
+}
+
+.cart-billing div {
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid gray;
+  border-bottom: 1px solid gray;
+}
+
+.billing-details {
+  display: flex;
+  gap: 2rem;
 }
