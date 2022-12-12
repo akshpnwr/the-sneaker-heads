@@ -1,0 +1,45 @@
+.cart {
+  height: 200px;
+  overflow: hidden;
+}
+
+.cart .banner-text {
+  transform: translate(-145%, -40%);
+}
+
+.cart-details {
+  font-family: 'Poppins', sans-serif;
+  width: 60%;
+  margin: 0 auto;
+}
+.cart-details > h1 {
+  margin: 2rem 0;
+}
+
+.fa-regular,
+.far {
+  font-size: 1.75rem;
+}
+
+.cart-item {
+  display: flex;
+  align-items: center;
+  border: 1px solid red;
+  gap: 3rem;
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.cart-item-image {
+  height: 170px;
+  width: 150px;
+}
+
+.cart-item-name {
+  font-weight: 800;
+}
+
+.cart-item-price {
+  color: gray;
+  font-weight: 800;
+}

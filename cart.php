@@ -8,9 +8,11 @@
       src="https://kit.fontawesome.com/4ce467bf60.js"
       crossorigin="anonymous"
     ></script>
-    <script src="app.js" type="module"></script>
+    <!-- <script src="app.js" type="module"></script> -->
     <link rel="stylesheet" href="./styles.css" />
-    <title>Home</title>
+    <link rel="stylesheet" href="./cart.css" />
+
+    <title>Cart</title>
   </head>
   <body>
     <div class="container">
@@ -48,30 +50,21 @@
         </div>
       </header>
 
-      <div class="banner-container">
+      <div class="banner-container cart">
         <div class="banner-text">
           <div class="text">
+            <p>Home / Shopping cart</p>
             <h2>
-              Choose your <br />
-              shoes with us.
+              Shopping Cart
             </h2>
-            <p>
-              We will help you choose the product that without the doubt suits
-              you best. And we mean it
-            </p>
-            <button class="read-more-btn">Read More</button>
-          </div>
-          <div class="inside-image">
-            <img src="./images/sneakers.png" alt="" />
           </div>
         </div>
         <img class="background-image" src="./images/background.jpg" alt="" />
       </div>
 
-      <div class="products-container">
-        <h3>Our products</h3>
-        <!-- <div class="items"></div> -->
-        <div class="products">
+      <div class="cart-details">
+        <h1>PRODUCTS</h1>
+        <div class="cart-items">
         <?php 
 
           $servername="localhost";
@@ -85,18 +78,18 @@
             die("Connection failed: " . $conn->connect_error);
           }
 
-          $sql = "SELECT * FROM products";
+          $sql = "SELECT * FROM orders";
 
           $result = $conn->query($sql);
 
           if ($result->num_rows > 0) {
             // output data of each row
             while($row = $result->fetch_assoc()) {
-              echo '<div class="product" data-id='.$row['p_id'].'>
-                      <img src="./images/sneaker'.$row['p_id'].'.webp" alt="" />
-                      <p class="product-name">'.$row["name"].'</p>
-                      <p class="product-price">$'.$row['price'].'</p>
-                      <button class="buy-btn">Buy</button>
+              echo '<div class="cart-item" data-id='.$row['o_id'].'>
+                      <i class="fa-regular fa-circle-xmark"></i>
+                      <img class="cart-item-image" src="./images/sneaker'.$row['p_id'].'.webp" alt="">
+                      <p class="cart-item-name">'.$row['item'].'</p>
+                      <p class="cart-item-price">$'.$row['price'].'</p>
                     </div>';
             }
           } else {
@@ -105,8 +98,30 @@
           $conn->close();
 
         ?>
-       
+          <!-- <div class="cart-item">
+            <i class="fa-regular fa-circle-xmark"></i>
+            <img class="cart-item-image" src="./images/sneaker1.webp" alt="">
+            <p class="cart-item-name">Air Max VI</p>
+            <p class="cart-item-price">$220</p>
+          </div>
+          <div class="cart-item">
+            <i class="fa-regular fa-circle-xmark"></i>
+            <img class="cart-item-image" src="./images/sneaker1.webp" alt="">
+            <p class="cart-item-name">Air Max VI</p>
+            <p class="cart-item-price">$220</p>
+          </div>        <div class="cart-item">
+            <i class="fa-regular fa-circle-xmark"></i>
+            <img class="cart-item-image" src="./images/sneaker1.webp" alt="">
+            <p class="cart-item-name">Air Max VI</p>
+            <p class="cart-item-price">$220</p>
+          </div>        <div class="cart-item">
+            <i class="fa-regular fa-circle-xmark"></i>
+            <img class="cart-item-image" src="./images/sneaker1.webp" alt="">
+            <p class="cart-item-name">Air Max VI</p>
+            <p class="cart-item-price">$220</p>
+          </div> -->
         </div>
+      
       </div>
 
       <footer>
