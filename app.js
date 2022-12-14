@@ -3,15 +3,17 @@
 const buyBtns = document.querySelectorAll('.buy-btn');
 const cartBtn = document.querySelector('.cart-btn');
 
+const baseUrl = 'http://localhost:8080/assignments/PHP%20PROJECT/';
+
 function fetchcall(data) {
   location.replace(
-    `${location.href}dummy.php?id=${data.id}&name=${data.name}&price=${data.price}`
+    `${baseUrl}orderSuccess.php?id=${data.id}&name=${data.name}&price=${data.price}`
   );
 }
 
 cartBtn.addEventListener('click', (e) => {
   console.log('click');
-  location.replace(`${location.href}/cart.php`);
+  location.replace(`${baseUrl}cart.php`);
 });
 
 buyBtns.forEach((btn) => {

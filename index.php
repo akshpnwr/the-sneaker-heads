@@ -13,13 +13,23 @@
     <title>Home</title>
   </head>
   <body>
+  <?php
+  // Initialize the session
+  session_start();
+  
+  // Check if the user is logged in, if not then redirect him to login page
+  if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
+      header("location: login.php");
+      exit;
+  }
+  ?>
     <div class="container">
       <header>
         <div class="title">THE SNEAKER HEADS</div>
         <div class="nav">
           <ul>
             <li>
-              <a href="#">Home</a>
+              <a href="./index.php">Home</a>
             </li>
             <li>
               <a href="#">Shop</a>
@@ -31,7 +41,7 @@
               <a href="#">Blog</a>
             </li>
             <li>
-              <a href="#">Page</a>
+              <a href="./logout.php">Logout</a>
             </li>
           </ul>
         </div>

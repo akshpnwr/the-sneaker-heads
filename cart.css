@@ -25,6 +25,10 @@
   width: 60%;
 }
 
+.cart-empty {
+  color: red;
+}
+
 .cart-item {
   display: flex;
   align-items: center;

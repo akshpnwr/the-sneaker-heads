@@ -30,6 +30,9 @@
 
     $message = "";
     if (count($_POST) > 0) {
+
+        session_start();
+
         $isSuccess = 0;
         $conn = mysqli_connect("localhost", "root", "", "mydb");
         $username = $_POST['username'];
@@ -52,7 +55,12 @@
             $message = "Invalid Username or Password!";
             echo "<h1>".$message."</h1>";
         } else {
-            header("Location:  ./index.php");
+            session_start();            
+            // Store data in session variables
+            $_SESSION["loggedin"] = true;
+            $_SESSION["id"] = $id;
+            $_SESSION["username"] = $username; 
+            header("location: ./index.php");
         }
     }
 
