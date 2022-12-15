@@ -36,14 +36,14 @@
             <li>
               <a href="#">Shop</a>
             </li>
-            <li>
+            <!-- <li>
               <a href="#">Product</a>
             </li>
             <li>
               <a href="#">Blog</a>
-            </li>
+            </li> -->
             <li>
-              <a href="#">Page</a>
+              <a href="./logout.php">Logout</a>
             </li>
           </ul>
         </div>
@@ -88,18 +88,21 @@
               if ($conn->connect_error) {
                 die("Connection failed: " . $conn->connect_error);
               }
-              
-              $sql = "SELECT * FROM orders";
+
+              // session_start();              
+              $u_name = $_SESSION["username"];
+
+              $sql = "SELECT * FROM orders WHERE username='$u_name'";
               
               $result = $conn->query($sql);
               $totalPrice = 0;
-              
+
               if ($result->num_rows > 0) {
                 // output data of each row
                 while($row = $result->fetch_assoc()) {
-
+                  
                   $totalPrice += $row['price'];
-
+                  
                   echo '<div class="cart-item" data-id='.$row['o_id'].'>
                   <i class="fa-regular fa-circle-xmark"></i>
                   <img class="cart-item-image" src="./images/sneaker'.$row['p_id'].'.webp" alt="">
@@ -108,8 +111,9 @@
                   </div>';
                 }
               } else {
-                echo '<h1 class="cart-empty">Cart is empty!</h1>';
+                echo '<h1 class="cart-empty">'.$u_name.' your cart is empty!</h1>';
               }
+              
               $conn->close();
             
             ?>

@@ -34,12 +34,12 @@
             <li>
               <a href="#">Shop</a>
             </li>
-            <li>
-              <a href="#">Product</a>
-            </li>
-            <li>
+              <!-- <li>
+                <a href="#">Product</a>
+              </li> -->
+            <!-- <li>
               <a href="#">Blog</a>
-            </li>
+            </li> -->
             <li>
               <a href="./logout.php">Logout</a>
             </li>
@@ -106,7 +106,7 @@
                       <img src="./images/sneaker'.$row['p_id'].'.webp" alt="" />
                       <p class="product-name">'.$row["name"].'</p>
                       <p class="product-price">$'.$row['price'].'</p>
-                      <button class="buy-btn">Buy</button>
+                      <button class="buy-btn">Add to cart</button>
                     </div>';
             }
           } else {

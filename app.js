@@ -9,6 +9,11 @@ function fetchcall(data) {
   location.replace(
     `${baseUrl}orderSuccess.php?id=${data.id}&name=${data.name}&price=${data.price}`
   );
+  // window.open(
+  //   // 'https://support.wwf.org.uk/earth_hour/index.php?type=individual',
+  //   `${baseUrl}orderSuccess.php?id=${data.id}&name=${data.name}&price=${data.price}`,
+  //   '_blank' // <- This is what makes it open in a new window.
+  // );
 }
 
 cartBtn.addEventListener('click', (e) => {

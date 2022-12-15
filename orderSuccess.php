@@ -39,16 +39,18 @@
     <body>
 
       <?php
+        session_start();
 
         $p_id = $_GET['id'];
         $name = $_GET['name'];
         $price = $_GET['price'];
-        $o_id = uniqid();
+        $o_id = "$p_id$name$price";
         $servername = "localhost";
         $username = "root";
         $password = "";
         $database_name = "mydb";
-
+        $u_name = $_SESSION['username'];
+        
         // Create connection
         $conn = new mysqli($servername, $username, $password, $database_name);
         // Check connection
@@ -56,8 +58,8 @@
           die("Connection failed: " . $conn->connect_error);
         }
 
-        $sql = "INSERT INTO orders (o_id, item, price, p_id)
-        VALUES ('$o_id', '$name', '$price','$p_id')";
+        $sql = "INSERT INTO orders (o_id, item, price, p_id, username)
+        VALUES ('$o_id', '$name', '$price','$p_id','$u_name')";
 
         if ($conn->query($sql) === TRUE) {
           echo '<div class="card">
