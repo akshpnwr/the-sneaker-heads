@@ -44,12 +44,12 @@
         $p_id = $_GET['id'];
         $name = $_GET['name'];
         $price = $_GET['price'];
-        $o_id = "$p_id$name$price";
         $servername = "localhost";
         $username = "root";
         $password = "";
         $database_name = "mydb";
         $u_name = $_SESSION['username'];
+        $o_id = "$p_id$name$u_name";
         
         // Create connection
         $conn = new mysqli($servername, $username, $password, $database_name);
